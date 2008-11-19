@@ -1,60 +1,57 @@
 ;; -*- emacs-lisp -*-
 
-(setq inferior-lisp-program "java -cp /cygwin/usr/local/lib/clojure.jar; clojure.lang.Repl" )
-;(setq repo "c:/Users/Mike/.m2/repository/")
+(setq-default indent-tabs-mode nil)
+
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;
-;; Set up clojure-mode
+;; Clojure Mode
 ;;
-;;
-;;(setq   inferior-lisp-program
-;;                                          ; Path to java implementation
-;;        (let* ((java-path "java")
-;;                                          ; Extra command-line options
-;;                                          ; to java.
-;;               (java-options "")
-;;                                          ; Base directory to Clojure.
-;;                                          ; Change this accordingly.
-;;               (clojure-path "~/src/clojure/trunk/")
-;; 					; The character between
-;; 					; elements of your classpath.
-;;               (class-path-delimiter ";")
-;;               (class-path 
-;;                (mapconcat 
-;;                 (lambda (s) s)
-;; 					; Add other paths to this list
-;; 					; if you want to have other
-;; 					; things in your classpath.
-;;                 (list  
-;;                  "~/src/clojure/clojure.jar"
-;;  ;                (concat repo  "commons-httpclient/commons-httpclient/3.1/commons-httpclient-3.1.jar" )
-;; ;                 (concat repo  "commons-codec/commons-codec/1.2/commons-codec-1.2.jar")
-;; ;                 (concat repo  "junit/junit/3.8.1/junit-3.8.1.jar")
-;; ;                 (concat repo "commons-logging/commons-logging/1.0.4/commons-logging-1.0.4.jar")
-;;                  )
-;;                 class-path-delimiter)))
-;; 	 (concat java-path
-;;                  " " java-options
-;;                  " -cp " class-path
-;;                  " clojure.lang.Repl")))
+
+(setq clojure-jar "/cygwin/usr/local/lib/clojure.jar")
+
+(setq classpath-delimiter (if (eq 'windows-nt system-type)
+                              ";"
+                            ":"))
+
+(defun join-classpath (items)
+  (mapconcat (lambda (s) s)
+             items
+             classpath-delimiter))
+
+(setq inferior-lisp-program
+      (concat "java -cp " 
+              (join-classpath 
+               (list clojure-jar))
+              " clojure.lang.Repl"))
 
 (add-to-list 'load-path (concat env-root "emacs.d/clojure-mode"))
-(add-to-list 'load-path (concat env-root "emacs.d/ruby-mode"))
-(add-to-list 'load-path (concat env-root "emacs.d/rinari"))
-(add-to-list 'load-path (concat env-root "emacs.d/rinari-rhtml"))
 (require 'clojure-auto)
 (require 'clojure-paredit)
 
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;;
+;;; Haskell Mode
+;;;
 
+(defun load-from-env (path)
+  (load (concat env-root path)))
 
-;(require 'ruby-mode)
-;(require 'rinari)
-;(require 'rhtml-mode)
+(load-from-env "emacs.d/haskell-mode-2.4/haskell-site-file")
+
+(add-hook 'haskell-mode-hook 'turn-on-haskell-doc-mode)
+(add-hook 'haskell-mode-hook 'turn-on-haskell-indent)
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;
 ;; Set up ruby-mode
 ;;
+;(add-to-list 'load-path (concat env-root "emacs.d/ruby-mode"))
+;(add-to-list 'load-path (concat env-root "emacs.d/rinari"))
+;(add-to-list 'load-path (concat env-root "emacs.d/rinari-rhtml"))
+
+;(require 'ruby-mode)
+;(require 'rinari)
+;(require 'rhtml-mode)
 
 ;(autoload 'ruby-mode "ruby-mode"
 ;  "Mode for editing ruby source files" t)
@@ -84,12 +81,12 @@
 
 ;; (add-hook 'jde-mode-hook 'my-jde-mode-hook)
 
-(setq-default indent-tabs-mode nil)
 
-;; ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-;; ;;;
-;; ;;; Cedet Stuff
-;; ;;;
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;;
+;;; Cedet Stuff
+;;;
 
 ;; ;; Load CEDET
 ;; (add-to-list 'load-path (expand-file-name "~/emacs/site/cedet/common"))
@@ -125,11 +122,6 @@
 ;; (require 'jde)
 
 
-(defun load-from-env (path)
-  (load (concat env-root path)))
 
-(load-from-env "emacs.d/haskell-mode-2.4/haskell-site-file")
 
-(add-hook 'haskell-mode-hook 'turn-on-haskell-doc-mode)
-(add-hook 'haskell-mode-hook 'turn-on-haskell-indent)
 
