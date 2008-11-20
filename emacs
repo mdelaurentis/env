@@ -1,42 +1,25 @@
 ;; -*- emacs-lisp -*-
 
+;; Use spaces, not tabes
 (setq-default indent-tabs-mode nil)
 
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-;;
-;; Clojure Mode
-;;
+(defun add-path (p)
+      (add-to-list 'load-path (concat env-root p)))
 
-(setq clojure-jar "/cygwin/usr/local/lib/clojure.jar")
+(add-path "emacs.d")
+(add-path "emacs.d/haskell-mode-2.4/")
 
-(setq classpath-delimiter (if (eq 'windows-nt system-type)
-                              ";"
-                            ":"))
+(load "clojure-stuff")
 
-(defun join-classpath (items)
-  (mapconcat (lambda (s) s)
-             items
-             classpath-delimiter))
-
-(setq inferior-lisp-program
-      (concat "java -cp " 
-              (join-classpath 
-               (list clojure-jar))
-              " clojure.lang.Repl"))
-
-(add-to-list 'load-path (concat env-root "emacs.d/clojure-mode"))
-(require 'clojure-auto)
-(require 'clojure-paredit)
+(defun load-from-env (path)
+  (load (concat env-root path)))
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;;
 ;;; Haskell Mode
 ;;;
 
-(defun load-from-env (path)
-  (load (concat env-root path)))
-
-(load-from-env "emacs.d/haskell-mode-2.4/haskell-site-file")
+(load "haskell-site-file")
 
 (add-hook 'haskell-mode-hook 'turn-on-haskell-doc-mode)
 (add-hook 'haskell-mode-hook 'turn-on-haskell-indent)
