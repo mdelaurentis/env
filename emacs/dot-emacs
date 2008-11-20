@@ -1,26 +1,22 @@
 ;; -*- emacs-lisp -*-
 
-;; Use spaces, not tabes
+;; Use spaces, not tabs
 (setq-default indent-tabs-mode nil)
 
 (defun add-path (p)
-      (add-to-list 'load-path (concat env-root p)))
+      (add-to-list 'load-path (concat emacs-root p)))
 
-(add-path "emacs.d")
-(add-path "emacs.d/haskell-mode-2.4/")
+(add-path "")
 
 (load "clojure-stuff")
-
-(defun load-from-env (path)
-  (load (concat env-root path)))
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;;
 ;;; Haskell Mode
 ;;;
 
+(add-path "/haskell-mode-2.4/")
 (load "haskell-site-file")
-
 (add-hook 'haskell-mode-hook 'turn-on-haskell-doc-mode)
 (add-hook 'haskell-mode-hook 'turn-on-haskell-indent)
 
