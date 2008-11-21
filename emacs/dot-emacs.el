@@ -1,5 +1,3 @@
-;; -*- emacs-lisp -*-
-
 (setq emacs-root (concat (getenv "HOME") "/src/env/emacs"))
 
 ;; Use spaces, not tabs
