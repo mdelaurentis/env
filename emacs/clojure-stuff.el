@@ -26,6 +26,3 @@
 (add-path "/clojure-mode")
 (require 'clojure-auto)
 (require 'clojure-paredit)
-
-
-
