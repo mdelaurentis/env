@@ -1,10 +1,10 @@
 (setq clojure-jar
       (concat (getenv "HOME") 
-              "/src/clojure/target/clojure-lang-1.0-SNAPSHOT.jar"))
+              "/src/clojure/clojure.jar"))
 
 (setq clojure-contrib-jar
       (concat (getenv "HOME")
-      "/home/mdelaurentis/src/clojure-contrib/clojure-contrib.jar"))
+      "/src/clojure-contrib/clojure-contrib.jar"))
 
 (setq system-is-cygwin (eq 'windows-nt system-type))
 
