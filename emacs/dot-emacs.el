@@ -1,3 +1,5 @@
+
+
 (setq emacs-root (concat (getenv "HOME") "/src/env/emacs"))
 
 ;; Use spaces, not tabs
@@ -8,7 +10,60 @@
 
 (add-path "")
 
-(load "clojure-stuff")
+(autoload 'paredit-mode "paredit"
+  "Minor mode for pseudo-structurally editing Lisp code."
+  t)
+
+
+(defun lisp-enable-paredit-hook () (paredit-mode 1))
+(add-hook 'clojure-mode-hook 'lisp-enable-paredit-hook)
+(add-hook 'emacs-lisp-mode-hook 'lisp-enable-paredit-hook)
+
+(add-to-list 'load-path (concat (getenv "HOME") "/src/clojure-mode"))
+(autoload 'clojure-mode "clojure-mode" "A major mode for Clojure" t)
+(require 'clojure-mode)
+(add-to-list 'auto-mode-alist '("\\.clj$" . clojure-mode))
+
+(setq swank-clojure-extra-classpaths)
+(clojure-slime-config)
+
+(eval-after-load "slime"
+  '(progn
+     (slime-setup '(slime-repl))))
+
+(setq slime-lisp-implementations
+      '((datastore
+         ("/home/mdelaurentis/src/datastore/clj/target/installed/bin/repl")
+         :init swank-clojure-init)
+        (rankyanker
+         ("/home/mdelaurentis/src/rankyanker/adhoc/target/installed/bin/repl")
+         :init swank-clojure-init)))
+
+
+;; (setq slime-lisp-implementations
+;;       (append
+;;        '((datastore ("/home/mdelaurentis/src/datastore/clj/target/installed/bin/repl") :init swank-clojure-init))
+;;        '((rankyanker ("/home/mdelaurentis/src/rankyanker/adhoc/target/installed/bin/repl") :init swank-clojure-init))) :init swank-clojure-init))
+       
+;;        slime-lisp-implementations))
+
+;;;
+;;; Confluence Mode
+;;;
+
+;; assuming confluence.el and xml-rpc.el are in your load path
+(add-to-list 'load-path (concat (getenv "HOME") "/src/confluence-el"))
+(require 'confluence)
+
+;; note, all customization must be in *one* custom-set-variables block
+(custom-set-variables
+ ;; ... other custimization
+
+ ;; confluence customization
+ '(confluence-url "http://intranet.hmsonline.com/confluence/rpc/xmlrpc")
+ '(confluence-default-space-alist (list (cons confluence-url "SWDEV"))))
+
+
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;;
