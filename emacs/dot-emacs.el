@@ -32,21 +32,30 @@
      (slime-setup '(slime-repl))))
 
 (setq slime-lisp-implementations
-      '((datastore
+      '((hw1
+         ("/Users/mdelaurentis/Classes/cs500/hw1/repl")
+         :init swank-clojure-init)
+        (datastore
          ("/home/mdelaurentis/src/datastore/clj/target/installed/bin/repl")
          :init swank-clojure-init)
         (rankyanker
          ("/home/mdelaurentis/src/rankyanker/adhoc/target/installed/bin/repl")
+         :init swank-clojure-init)
+        (fermentagious
+         ("/Users/mdelaurentis/src/brewlog/repl")
+         :init swank-clojure-init)
+        (contest
+         ("/Users/mdelaurentis/src/engine-yard-contest/repl")
+         :init swank-clojure-init)
+        (mdelaurentis-dot-com
+         ("cd /Users/mdelaurentis/src/mdelaurentis; ./repl")
+         :init swank-clojure-init)
+        (anytable
+         ("/Users/mdelaurentis/src/anytable/bin/repl")
+         :init swank-clojure-init)
+        (hw8
+         ("/Users/mdelaurentis/Classes/cs500/homework8/bin/repl")
          :init swank-clojure-init)))
-
-
-;; (setq slime-lisp-implementations
-;;       (append
-;;        '((datastore ("/home/mdelaurentis/src/datastore/clj/target/installed/bin/repl") :init swank-clojure-init))
-;;        '((rankyanker ("/home/mdelaurentis/src/rankyanker/adhoc/target/installed/bin/repl") :init swank-clojure-init))) :init swank-clojure-init))
-       
-;;        slime-lisp-implementations))
-
 ;;;
 ;;; Confluence Mode
 ;;;
@@ -103,4 +112,3 @@
 ;          '(lambda ()
 ;             (inf-ruby-keys)
 ;	     ))
-
