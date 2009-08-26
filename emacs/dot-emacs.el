@@ -1,12 +1,10 @@
-
-
 (setq emacs-root (concat (getenv "HOME") "/src/env/emacs"))
 
 ;; Use spaces, not tabs
 (setq-default indent-tabs-mode nil)
 
 (defun add-path (p)
-      (add-to-list 'load-path (concat emacs-root p)))
+  (add-to-list 'load-path (concat emacs-root p)))
 
 (add-path "")
 
