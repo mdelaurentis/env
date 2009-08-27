@@ -3,6 +3,8 @@
 ;; Use spaces, not tabs
 (setq-default indent-tabs-mode nil)
 
+;; Just showing Josh git-mode
+
 (defvar *mrdemacs-home*
   (expand-file-name "~/src/env/emacs")
   "The install location of my emacs configuration.  All other
