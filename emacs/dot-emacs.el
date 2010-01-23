@@ -3,6 +3,9 @@
 ;; Use spaces, not tabs
 (setq-default indent-tabs-mode nil)
 
+;; Use GNU-style indentation for Java
+; (setq c-default-style (cons (cons 'java-mode "gnu") c-default-style ))
+
 ;; Just showing Josh git-mode
 
 (defvar *mrdemacs-home*
@@ -73,6 +76,12 @@
          :init swank-clojure-init)
         (hw8
          ("/Users/mdelaurentis/Classes/cs500/homework8/bin/repl")
+         :init swank-clojure-init)
+        (cs522
+         ("/Users/mdelaurentis/Classes/cs522/bin/repl")
+         :init swank-clojure-init)
+        (hms-config
+         ("/Users/mdelaurentis/src/hms-config/target/installed/bin/repl")
          :init swank-clojure-init)))
 ;;;
 ;;; Confluence Mode
