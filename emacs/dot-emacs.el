@@ -18,21 +18,6 @@
 (add-hook 'clojure-mode-hook 'lisp-enable-paredit-hook)
 (add-hook 'emacs-lisp-mode-hook 'lisp-enable-paredit-hook)
 
-;;;
-;;; Confluence Mode
-;;;
-
-(add-to-list 'load-path "~/src/confluence-el")
-(require 'confluence)
-
-;; note, all customization must be in *one* custom-set-variables block
-(custom-set-variables
- ;; ... other custimization
-
- ;; confluence customization
- '(confluence-url "http://intranet.hmsonline.com/confluence/rpc/xmlrpc")
- '(confluence-default-space-alist (list (cons confluence-url "SWDEV"))))
-
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;;
 ;;; Haskell Mode
@@ -68,6 +53,9 @@
 (add-to-list 'load-path "~/src/env/emacs/groovy")
 (add-to-list 'auto-mode-alist '("\.groovy$" . groovy-mode))
 (add-to-list 'interpreter-mode-alist '("groovy" . groovy-mode))
+
+(setq c-default-style
+      '((groovy-mode . "java")))
 
 ;;; This was installed by package-install.el.
 ;;; This provides support for the package system and
