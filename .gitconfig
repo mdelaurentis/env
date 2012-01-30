@@ -1,0 +1,7 @@
+[user]
+	name = Mike DeLaurentis
+	email = delaurentis@gmail.com
+[color]
+	ui = true
+[alias]
+	st = status
