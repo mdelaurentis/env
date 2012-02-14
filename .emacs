@@ -43,8 +43,11 @@
 (add-hook 'python-mode-hook (lambda () (interactive) (column-marker-1 80)))
 
 ;(set-face-foreground 'minibuffer-prompt "white")
+
+;; Column marker
 (require 'column-marker)
 (add-hook 'cperl-mode-hook (lambda () (interactive) (column-marker-1 80)))
+(add-hook 'python-mode-hook (lambda () (interactive) (column-marker-1 80)))
 
 ;; Use cperl-mode instead of the default perl-mode
 (defalias 'perl-mode 'cperl-mode)
