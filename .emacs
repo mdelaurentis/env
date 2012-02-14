@@ -4,8 +4,13 @@
 ;(add-to-list 'load-path "/Users/mike/.emacs.d/slime")
 (add-to-list 'load-path "/Users/mike/.emacs.d/clojure-mode")
 (add-to-list 'load-path "/Users/mike/.emacs.d/markdown-mode")
+(add-to-list 'load-path "/Users/mike/.emacs.d/ruby-mode")
 ;(add-to-list 'load-path "/Users/mdelaurentis/src/env/emacs/")
 ;(add-to-list 'load-path "~/src/env/emacs/groovy")
+
+(autoload 'ruby-mode "ruby-mode" "Major mode for ruby files" t)
+(add-to-list 'auto-mode-alist '("\\.rb$" . ruby-mode))
+(add-to-list 'interpreter-mode-alist '("ruby" . ruby-mode))
 
 ;; Use spaces, not tabs
 (setq-default indent-tabs-mode nil)
