@@ -1,14 +1,15 @@
 ;; Setup load path.
-;; I use clojure-mode and swank-clojure in my ~/src dir.
 (add-to-list 'load-path (expand-file-name "~/.emacs.d"))
-;(add-to-list 'load-path "/Users/mike/.emacs.d/slime")
-(add-to-list 'load-path "/Users/mike/.emacs.d/clojure-mode")
-(add-to-list 'load-path "/Users/mike/.emacs.d/markdown-mode")
+(add-to-list 'load-path (expand-file-name "~/.emacs.d/clojure-mode")
+(add-to-list 'load-path (expand-file-name "~/.emacs.d/markdown-mode")
+(add-to-list 'load-path (expand-file-name "~/.emacs.d/ruby-mode")
+
+(autoload 'ruby-mode "ruby-mode" "Major mode for ruby files" t)
+(add-to-list 'auto-mode-alist '("\\.rb$" . ruby-mode))
+(add-to-list 'interpreter-mode-alist '("ruby" . ruby-mode))
 
 ;; Use spaces, not tabs
 (setq-default indent-tabs-mode nil)
-
-(require 'column-marker)
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;
@@ -17,8 +18,6 @@
 
 ;; Use cperl-mode instead of the default perl-mode
 (defalias 'perl-mode 'cperl-mode)
-
-(add-hook 'cperl-mode-hook (lambda () (interactive) (column-marker-1 80)))
 
 ;; just spaces
 (setq-default indent-tabs-mode nil)
@@ -54,13 +53,15 @@
       '((groovy-mode . "java")
         (java-mode   . "java")))
 
-;(require 'column-marker)
 
+;; Column marker
+
+(require 'column-marker)
 (add-hook 'java-mode-hook (lambda () (interactive) (column-marker-1 80)))
-(add-hook 'groovy-mode-hook (lambda () (interactive) (column-marker-1 80)))
+(add-hook 'ruby-mode-hook (lambda () (interactive) (column-marker-1 80)))
+(add-hook 'cperl-mode-hook (lambda () (interactive) (column-marker-1 80)))
 (add-hook 'python-mode-hook (lambda () (interactive) (column-marker-1 80)))
 
-;(set-face-foreground 'minibuffer-prompt "white")
 
 
 
