@@ -1,22 +1,45 @@
 ;; Setup load path.
 ;; I use clojure-mode and swank-clojure in my ~/src dir.
-(add-to-list 'load-path "/Users/mike/.emacs.d")
+(add-to-list 'load-path (expand-file-name "~/.emacs.d"))
 ;(add-to-list 'load-path "/Users/mike/.emacs.d/slime")
 (add-to-list 'load-path "/Users/mike/.emacs.d/clojure-mode")
 (add-to-list 'load-path "/Users/mike/.emacs.d/markdown-mode")
-;(add-to-list 'load-path "/Users/mdelaurentis/src/env/emacs/")
-;(add-to-list 'load-path "~/src/env/emacs/groovy")
 
 ;; Use spaces, not tabs
 (setq-default indent-tabs-mode nil)
 
+(require 'column-marker)
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;
+;; Perl
+;;
+
+;; Use cperl-mode instead of the default perl-mode
+(defalias 'perl-mode 'cperl-mode)
+
+(add-hook 'cperl-mode-hook (lambda () (interactive) (column-marker-1 80)))
+
+;; just spaces
+(setq-default indent-tabs-mode nil)
+
+;; Use 4 space indents via cperl mode
+(custom-set-variables
+  '(cperl-close-paren-offset -4)
+  '(cperl-continued-statement-offset 4)
+  '(cperl-indent-level 4)
+  '(cperl-indent-parens-as-block t)
+  '(cperl-tab-always-indent t)
+)
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;
+;; Clojure
+;;
+
+
 (require 'clojure-mode)
 (require 'paredit)
-
-(autoload 'markdown-mode "markdown-mode.el" "Major mode for editing Markdown files" t)
-(setq auto-mode-alist (cons '("\\.text" . markdown-mode) auto-mode-alist))
-(setq auto-mode-alist (cons '("\\.md" . markdown-mode) auto-mode-alist))
-
 
 ;; Turn on paredit mode for .clj and .el files.
 (defun  lisp-enable-paredit-hook () (paredit-mode 1))
@@ -38,20 +61,6 @@
 (add-hook 'python-mode-hook (lambda () (interactive) (column-marker-1 80)))
 
 ;(set-face-foreground 'minibuffer-prompt "white")
-(require 'column-marker)
-(add-hook 'cperl-mode-hook (lambda () (interactive) (column-marker-1 80)))
 
-;; Use cperl-mode instead of the default perl-mode
-(defalias 'perl-mode 'cperl-mode)
 
-;; just spaces
-(setq-default indent-tabs-mode nil)
 
-;; Use 4 space indents via cperl mode
-(custom-set-variables
-  '(cperl-close-paren-offset -4)
-  '(cperl-continued-statement-offset 4)
-  '(cperl-indent-level 4)
-  '(cperl-indent-parens-as-block t)
-  '(cperl-tab-always-indent t)
-)
