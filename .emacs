@@ -64,3 +64,6 @@
   '(cperl-indent-parens-as-block t)
   '(cperl-tab-always-indent t)
 )
+
+;; Use aspell
+(setq-default ispell-program-name "aspell")
