@@ -1,12 +1,8 @@
 ;; Setup load path.
-;; I use clojure-mode and swank-clojure in my ~/src dir.
-(add-to-list 'load-path "/Users/mike/.emacs.d")
-;(add-to-list 'load-path "/Users/mike/.emacs.d/slime")
-(add-to-list 'load-path "/Users/mike/.emacs.d/clojure-mode")
-(add-to-list 'load-path "/Users/mike/.emacs.d/markdown-mode")
-(add-to-list 'load-path "/Users/mike/.emacs.d/ruby-mode")
-;(add-to-list 'load-path "/Users/mdelaurentis/src/env/emacs/")
-;(add-to-list 'load-path "~/src/env/emacs/groovy")
+(add-to-list 'load-path (expand-file-name "~/.emacs.d"))
+;(add-to-list 'load-path (expand-file-name "~/.emacs.d/clojure-mode"))
+(add-to-list 'load-path (expand-file-name "~/.emacs.d/markdown-mode"))
+(add-to-list 'load-path (expand-file-name "~/.emacs.d/ruby-mode"))
 
 (autoload 'ruby-mode "ruby-mode" "Major mode for ruby files" t)
 (add-to-list 'auto-mode-alist '("\\.rb$" . ruby-mode))
@@ -16,39 +12,10 @@
 ;; Use spaces, not tabs
 (setq-default indent-tabs-mode nil)
 
-(require 'clojure-mode)
-(require 'paredit)
-
-(autoload 'markdown-mode "markdown-mode.el" "Major mode for editing Markdown files" t)
-(setq auto-mode-alist (cons '("\\.text" . markdown-mode) auto-mode-alist))
-(setq auto-mode-alist (cons '("\\.md" . markdown-mode) auto-mode-alist))
-
-
-;; Turn on paredit mode for .clj and .el files.
-(defun  lisp-enable-paredit-hook () (paredit-mode 1))
-(add-hook 'clojure-mode-hook 'lisp-enable-paredit-hook)
-(add-hook 'emacs-lisp-mode-hook 'lisp-enable-paredit-hook)
-
-(autoload 'clojure-test-mode "clojure-test-mode" "Clojure test mode" t)
-(autoload 'clojure-test-maybe-enable "clojure-test-mode" "" t)
-(add-hook 'clojure-mode-hook 'clojure-test-maybe-enable)
-
-(setq c-default-style
-      '((groovy-mode . "java")
-        (java-mode   . "java")))
-
-;(require 'column-marker)
-
-(add-hook 'java-mode-hook (lambda () (interactive) (column-marker-1 80)))
-(add-hook 'groovy-mode-hook (lambda () (interactive) (column-marker-1 80)))
-(add-hook 'python-mode-hook (lambda () (interactive) (column-marker-1 80)))
-
-;(set-face-foreground 'minibuffer-prompt "white")
-
-;; Column marker
-(require 'column-marker)
-(add-hook 'cperl-mode-hook (lambda () (interactive) (column-marker-1 80)))
-(add-hook 'python-mode-hook (lambda () (interactive) (column-marker-1 80)))
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;
+;; Perl
+;;
 
 ;; Use cperl-mode instead of the default perl-mode
 (defalias 'perl-mode 'cperl-mode)
@@ -64,6 +31,37 @@
   '(cperl-indent-parens-as-block t)
   '(cperl-tab-always-indent t)
 )
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;
+;; Clojure
+;;
+
+
+;(require 'clojure-mode)
+(require 'paredit)
+
+;; Turn on paredit mode for .clj and .el files.
+(defun  lisp-enable-paredit-hook () (paredit-mode 1))
+;(add-hook 'clojure-mode-hook 'lisp-enable-paredit-hook)
+(add-hook 'emacs-lisp-mode-hook 'lisp-enable-paredit-hook)
+
+;(autoload 'clojure-test-mode "clojure-test-mode" "Clojure test mode" t)
+;(autoload 'clojure-test-maybe-enable "clojure-test-mode" "" t)
+;(add-hook 'clojure-mode-hook 'clojure-test-maybe-enable)
+
+(setq c-default-style
+      '((groovy-mode . "java")
+        (java-mode   . "java")))
+
+
+;; Column marker
+
+(require 'column-marker)
+(add-hook 'java-mode-hook (lambda () (interactive) (column-marker-1 80)))
+(add-hook 'ruby-mode-hook (lambda () (interactive) (column-marker-1 80)))
+(add-hook 'cperl-mode-hook (lambda () (interactive) (column-marker-1 80)))
+(add-hook 'python-mode-hook (lambda () (interactive) (column-marker-1 80)))
 
 ;; Use aspell
 (setq-default ispell-program-name "aspell")
