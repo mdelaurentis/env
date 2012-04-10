@@ -29,8 +29,12 @@
   '(cperl-continued-statement-offset 4)
   '(cperl-indent-level 4)
   '(cperl-indent-parens-as-block t)
-  '(cperl-tab-always-indent t)
-)
+  '(cperl-tab-always-indent t))
+
+(add-to-list 'auto-mode-alist '("\\.i?t$" . cperl-mode))
+
+(setq cperl-electric-lbrace t)
+(setq cperl-electric-parens t)
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;
