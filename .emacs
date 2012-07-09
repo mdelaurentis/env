@@ -26,15 +26,15 @@
 ;; Use 4 space indents via cperl mode
 (custom-set-variables
   '(cperl-close-paren-offset -4)
-  '(cperl-continued-statement-offset 4)
+  '(cperl-continued-statement-offset 0)
   '(cperl-indent-level 4)
   '(cperl-indent-parens-as-block t)
   '(cperl-tab-always-indent t))
 
 (add-to-list 'auto-mode-alist '("\\.i?t$" . cperl-mode))
 
-(setq cperl-electric-lbrace t)
-(setq cperl-electric-parens t)
+;(setq cperl-electric-lbrace t)
+;(setq cperl-electric-parens t)
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;
@@ -69,3 +69,8 @@
 
 ;; Use aspell
 (setq-default ispell-program-name "aspell")
+
+;(setq fill-column 78)
+;(setq auto-fill-mode t)
+
+
