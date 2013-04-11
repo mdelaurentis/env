@@ -1,6 +1,6 @@
 sudo apt-get update
-sudo apt-get install git emacs screen
-sudo apt-get install git python-numpy python-scipy python-matplotlib python-h5py python-nose redis-server python-setuptools ipython python-pip
+sudo apt-get install git emacs screen make
+sudo apt-get install git python-numpy python-scipy python-matplotlib python-h5py redis-server python-pip
 sudo pip install virtualenv
 
 SCRIPT=`readlink -f $0`
