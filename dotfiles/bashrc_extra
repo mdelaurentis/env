@@ -10,3 +10,4 @@ export PS1='
 \u@\h:\w
 $ '
 alias screen='screen -e ^]]'
+export EDITOR=vim
