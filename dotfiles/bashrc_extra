@@ -11,3 +11,4 @@ export PS1='
 $ '
 alias screen='screen -e ^]]'
 export EDITOR=vim
+export PATH=$HOME/bin:$PATH
