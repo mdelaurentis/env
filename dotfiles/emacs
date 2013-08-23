@@ -12,6 +12,13 @@
 ;; Use spaces, not tabs
 (setq-default indent-tabs-mode nil)
 
+(require 'package)
+(add-to-list 'package-archives
+    '("marmalade" .
+          "http://marmalade-repo.org/packages/"))
+          (package-initialize)
+
+
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;
 ;; Perl
@@ -74,11 +81,6 @@
 ;(setq fill-column 78)
 ;(setq auto-fill-mode t)
 
-(require 'package)
-(add-to-list 'package-archives
-    '("marmalade" .
-          "http://marmalade-repo.org/packages/"))
-          (package-initialize)
           
 
 (global-set-key (kbd "C-x <up>") 'windmove-up)                                                                                                                                                                      
