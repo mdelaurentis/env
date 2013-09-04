@@ -1,3 +1,5 @@
+;; -*- emacs-lisp -*-
+
 ;; Setup load path.
 (add-to-list 'load-path (expand-file-name "~/.emacs.d"))
 ;(add-to-list 'load-path (expand-file-name "~/.emacs.d/clojure-mode"))
@@ -8,6 +10,8 @@
 (add-to-list 'auto-mode-alist '("\\.rb$" . ruby-mode))
 (add-to-list 'auto-mode-alist '("Rakefile" . ruby-mode))
 (add-to-list 'interpreter-mode-alist '("ruby" . ruby-mode))
+
+(add-to-list 'auto-mode-alist '("\\.php$" . php-mode))
 
 ;; Use spaces, not tabs
 (setq-default indent-tabs-mode nil)
@@ -81,7 +85,9 @@
           (package-initialize)
           
 
-(global-set-key (kbd "C-x <up>") 'windmove-up)                                                                                                                                                                      
-(global-set-key (kbd "C-x <down>") 'windmove-down)
-(global-set-key (kbd "C-x <right>") 'windmove-right)
-(global-set-key (kbd "C-x <left>") 'windmove-left)
+
+(defun terminal-init-screen ()
+   "Terminal initialization function for GNU screen and tmux."
+   (load "term/xterm")
+   (xterm-register-default-colors)
+   (tty-set-up-initial-frame-faces))
