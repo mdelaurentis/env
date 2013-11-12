@@ -47,7 +47,7 @@
 
 ;; Turn on paredit mode for .clj and .el files.
 (defun  lisp-enable-paredit-hook () (paredit-mode 1))
-;(add-hook 'clojure-mode-hook 'lisp-enable-paredit-hook)
+(add-hook 'clojure-mode-hook 'lisp-enable-paredit-hook)
 (add-hook 'emacs-lisp-mode-hook 'lisp-enable-paredit-hook)
 
 ;(autoload 'clojure-test-mode "clojure-test-mode" "Clojure test mode" t)
