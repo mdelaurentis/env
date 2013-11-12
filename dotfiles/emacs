@@ -1,3 +1,5 @@
+;; -*- emacs-lisp -*-
+
 ;; Setup load path.
 (add-to-list 'load-path (expand-file-name "~/.emacs.d"))
 ;(add-to-list 'load-path (expand-file-name "~/.emacs.d/clojure-mode"))
@@ -9,8 +11,26 @@
 (add-to-list 'auto-mode-alist '("Rakefile" . ruby-mode))
 (add-to-list 'interpreter-mode-alist '("ruby" . ruby-mode))
 
-;; Use spaces, not tabs
+;; By default, produce spaces instead of tabs for indentation.
 (setq-default indent-tabs-mode nil)
+
+;; Mode-specific hook to use tabs instead of spaces. tab-width
+;; controls how many spaces are actually displayed. indent-tabs-mode
+;; tells emacs to use tabs instead of spaces for indenting.
+(defun use-tabs-hook ()
+  (set-variable 'tab-width 2)
+  (set-variable 'indent-tabs-mode t))
+
+(add-hook 'php-mode-hook 'use-tabs-hook)
+(add-to-list 'auto-mode-alist '("\\.php$" . php-mode))
+
+
+(require 'package)
+(add-to-list 'package-archives
+    '("marmalade" .
+          "http://marmalade-repo.org/packages/"))
+          (package-initialize)
+
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;
@@ -33,9 +53,6 @@
 
 (add-to-list 'auto-mode-alist '("\\.i?t$" . cperl-mode))
 
-;(setq cperl-electric-lbrace t)
-;(setq cperl-electric-parens t)
-
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;
 ;; Clojure
@@ -50,9 +67,6 @@
 (add-hook 'clojure-mode-hook 'lisp-enable-paredit-hook)
 (add-hook 'emacs-lisp-mode-hook 'lisp-enable-paredit-hook)
 
-;(autoload 'clojure-test-mode "clojure-test-mode" "Clojure test mode" t)
-;(autoload 'clojure-test-maybe-enable "clojure-test-mode" "" t)
-;(add-hook 'clojure-mode-hook 'clojure-test-maybe-enable)
 
 (setq c-default-style
       '((groovy-mode . "java")
@@ -61,11 +75,12 @@
 
 ;; Column marker
 
-(require 'column-marker)
-(add-hook 'java-mode-hook (lambda () (interactive) (column-marker-1 80)))
-(add-hook 'ruby-mode-hook (lambda () (interactive) (column-marker-1 80)))
-(add-hook 'cperl-mode-hook (lambda () (interactive) (column-marker-1 80)))
-(add-hook 'python-mode-hook (lambda () (interactive) (column-marker-1 80)))
+
+;; (require 'column-marker)
+;; (add-hook 'java-mode-hook (lambda () (interactive) (column-marker-1 80)))
+;; (add-hook 'ruby-mode-hook (lambda () (interactive) (column-marker-1 80)))
+;; (add-hook 'cperl-mode-hook (lambda () (interactive) (column-marker-1 80)))
+;; (add-hook 'python-mode-hook (lambda () (interactive) (column-marker-1 80)))
 
 ;; Use aspell
 (setq-default ispell-program-name "aspell")
@@ -73,7 +88,7 @@
 ;(setq fill-column 78)
 ;(setq auto-fill-mode t)
 
-
+;; This is from the MacBook.
 (setq package-archives '(("gnu" . "http://elpa.gnu.org/packages/")
                          ("marmalade" . "http://marmalade-repo.org/packages/")
                          ("melpa" . "http://melpa.milkbox.net/packages/")))
