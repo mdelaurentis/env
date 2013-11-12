@@ -11,10 +11,19 @@
 (add-to-list 'auto-mode-alist '("Rakefile" . ruby-mode))
 (add-to-list 'interpreter-mode-alist '("ruby" . ruby-mode))
 
+;; By default, produce spaces instead of tabs for indentation.
+(setq-default indent-tabs-mode nil)
+
+;; Mode-specific hook to use tabs instead of spaces. tab-width
+;; controls how many spaces are actually displayed. indent-tabs-mode
+;; tells emacs to use tabs instead of spaces for indenting.
+(defun use-tabs-hook ()
+  (set-variable 'tab-width 2)
+  (set-variable 'indent-tabs-mode t))
+
+(add-hook 'php-mode-hook 'use-tabs-hook)
 (add-to-list 'auto-mode-alist '("\\.php$" . php-mode))
 
-;; Use spaces, not tabs
-(setq-default indent-tabs-mode nil)
 
 (require 'package)
 (add-to-list 'package-archives
@@ -44,9 +53,6 @@
 
 (add-to-list 'auto-mode-alist '("\\.i?t$" . cperl-mode))
 
-;(setq cperl-electric-lbrace t)
-;(setq cperl-electric-parens t)
-
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;
 ;; Clojure
@@ -61,9 +67,6 @@
 (add-hook 'clojure-mode-hook 'lisp-enable-paredit-hook)
 (add-hook 'emacs-lisp-mode-hook 'lisp-enable-paredit-hook)
 
-;(autoload 'clojure-test-mode "clojure-test-mode" "Clojure test mode" t)
-;(autoload 'clojure-test-maybe-enable "clojure-test-mode" "" t)
-;(add-hook 'clojure-mode-hook 'clojure-test-maybe-enable)
 
 (setq c-default-style
       '((groovy-mode . "java")
@@ -82,14 +85,3 @@
 ;; Use aspell
 (setq-default ispell-program-name "aspell")
 
-;(setq fill-column 78)
-;(setq auto-fill-mode t)
-
-          
-
-
-(defun terminal-init-screen ()
-   "Terminal initialization function for GNU screen and tmux."
-   (load "term/xterm")
-   (xterm-register-default-colors)
-   (tty-set-up-initial-frame-faces))
