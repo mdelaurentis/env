@@ -5,5 +5,3 @@
 	ui = true
 [alias]
 	st = status
-[push]
-	default = simple
