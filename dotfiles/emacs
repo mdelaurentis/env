@@ -3,7 +3,6 @@
 (setq vc-handled-backends nil)
 
 ;; Setup load path.
-(add-to-list 'load-path (expand-file-name "~/.emacs.d"))
 ;(add-to-list 'load-path (expand-file-name "~/.emacs.d/clojure-mode"))
 (add-to-list 'load-path (expand-file-name "~/.emacs.d/markdown-mode"))
 (add-to-list 'load-path (expand-file-name "~/.emacs.d/ruby-mode"))
