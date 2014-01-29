@@ -1,6 +1,6 @@
-SCRIPT=`readlink -f $0`
-SRC_PREFIX=`dirname $SCRIPT`
-
+#SCRIPT=`readlink -f $0`
+#SRC_PREFIX=`dirname $SCRIPT`
+SRC_PREFIX=~/src/env
 for f in dotfiles/*; do
     dest=~/.`basename $f`
     src=$SRC_PREFIX/$f
