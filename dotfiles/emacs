@@ -23,6 +23,8 @@
   (set-variable 'indent-tabs-mode t))
 
 (add-hook 'php-mode-hook 'use-tabs-hook)
+(add-hook 'javascript-mode-hook 'use-tabs-hook)
+(add-to-list 'auto-mode-alist '("\\.php$" . php-mode))
 (add-to-list 'auto-mode-alist '("\\.php$" . php-mode))
 
 
@@ -93,3 +95,7 @@
 (setq package-archives '(("gnu" . "http://elpa.gnu.org/packages/")
                          ("marmalade" . "http://marmalade-repo.org/packages/")
                          ("melpa" . "http://melpa.milkbox.net/packages/")))
+
+(defun my-indent-setup ()
+  (c-set-offset 'arglist-intro '+))
+(add-hook 'java-mode-hook 'my-indent-setup)
