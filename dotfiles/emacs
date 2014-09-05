@@ -1,81 +1,31 @@
-;; -*- emacs-lisp -*-
+(require 'package)
 
-;; Use aspell
-(setq-default ispell-program-name "aspell")
-
-;; Don't try to load VC stuff, because it runs too slowly when
-;; accessing a filesystem on the VM.
-(setq vc-handled-backends nil)
-
-;; Use spaces instead of tabs
 (setq-default indent-tabs-mode nil)
+(setq-default tab-width 4)
+(setq indent-line-function 'insert-tab)
+
+;(unless (package-installed-p 'cider)
+;    (package-install 'cider))
 
 ;; Hook for using tabs instead of spaces, and displaying tabs as 2
 ;; spaces
 (defun use-tabs-hook ()
   (set-variable 'tab-width 2)
-  (set-variable 'indent-tabs-mode t))
+    (set-variable 'indent-tabs-mode t))
 
-;;;; Perl ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+    (add-to-list 'package-archives
+                 '("melpa" . "http://melpa.milkbox.net/packages/") t)
 
-;; Use cperl-mode instead of the default perl-mode
-(defalias 'perl-mode 'cperl-mode)
+                 (defun turn-on-paredit () (paredit-mode 1))
 
-;; Use 4 space indents via cperl mode
-(custom-set-variables
-  '(cperl-close-paren-offset -4)
-  '(cperl-continued-statement-offset 0)
-  '(cperl-indent-level 4)
-  '(cperl-indent-parens-as-block t)
-  '(cperl-tab-always-indent t))
+                 (add-hook 'clojure-mode-hook 'turn-on-paredit)
+                 (add-hook 'php-mode-hook 'use-tabs-hook)
 
-;;;; Indentation for c-based modes ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
-(setq c-default-style
-      '((groovy-mode . "java")
-        (java-mode   . "java")))
+                 (setq c-default-style
+                       '((groovy-mode . "java")
+                               (java-mode   . "java")))
 
-(defun my-indent-setup ()
-  (c-set-offset 'arglist-intro '+))
+                               (defun my-indent-setup ()
+                                 (c-set-offset 'arglist-intro '+))
 
-;;;; Paredit for lisp-based modes ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-
-(require 'paredit)
-(defun lisp-enable-paredit-hook ()
-  (paredit-mode 1))
-
-(defun whitespace-mode-hook ()
-  (whitespace-mode 1))
-
-;; Hooks
-(add-hook 'clojure-mode-hook 'lisp-enable-paredit-hook)
-(add-hook 'emacs-lisp-mode-hook 'lisp-enable-paredit-hook)
-(add-hook 'php-mode-hook 'use-tabs-hook)
-(add-hook 'javascript-mode-hook 'use-tabs-hook)
-(add-hook 'java-mode-hook 'my-indent-setup)
-(add-hook 'java-mode-hook 'whitespace-mode-hook)
-(add-hook 'clojure-mode-hook 'whitespace-mode-hook)
-
-;; Mode mappings
-(add-to-list 'auto-mode-alist '("\\.i?t$" . cperl-mode))
-(add-to-list 'auto-mode-alist '("\\.php$" . php-mode))
-(add-to-list 'auto-mode-alist '("\\.edn$" . clojure-mode))
-
-;;;;;;;;;;;;;;;; ELPA ;;;;;;;;;;;;;;;;
-
-;; I forget what I needed the "marmalade" repo for.
-(require 'package)
-(add-to-list 'package-archives
-    '("marmalade" .
-          "http://marmalade-repo.org/packages/"))
-          (package-initialize)
-
-;; This is from the MacBook.
-(setq package-archives '(("gnu" . "http://elpa.gnu.org/packages/")
-                         ("marmalade" . "http://marmalade-repo.org/packages/")
-                         ("melpa" . "http://melpa.milkbox.net/packages/")))
-
-(require 'uniquify)
-(setq
- uniquify-buffer-name-style 'post-forward
- uniquify-separator ":")
