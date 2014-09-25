@@ -11,21 +11,21 @@
 ;; spaces
 (defun use-tabs-hook ()
   (set-variable 'tab-width 2)
-    (set-variable 'indent-tabs-mode t))
+  (set-variable 'indent-tabs-mode t))
 
-    (add-to-list 'package-archives
-                 '("melpa" . "http://melpa.milkbox.net/packages/") t)
+(add-to-list 'package-archives
+             '("melpa" . "http://melpa.milkbox.net/packages/") t)
 
-                 (defun turn-on-paredit () (paredit-mode 1))
+(defun turn-on-paredit () (paredit-mode 1))
 
-                 (add-hook 'clojure-mode-hook 'turn-on-paredit)
-                 (add-hook 'php-mode-hook 'use-tabs-hook)
+(add-hook 'clojure-mode-hook 'turn-on-paredit)
+(add-hook 'php-mode-hook 'use-tabs-hook)
 
 
-                 (setq c-default-style
-                       '((groovy-mode . "java")
-                               (java-mode   . "java")))
+(setq c-default-style
+      '((groovy-mode . "java")
+        (java-mode   . "java")))
 
-                               (defun my-indent-setup ()
-                                 (c-set-offset 'arglist-intro '+))
+(defun my-indent-setup ()
+  (c-set-offset 'arglist-intro '+))
 
