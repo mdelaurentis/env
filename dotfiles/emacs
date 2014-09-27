@@ -4,8 +4,13 @@
 (setq-default tab-width 4)
 (setq indent-line-function 'insert-tab)
 
-;(unless (package-installed-p 'cider)
-;    (package-install 'cider))
+(add-to-list 'package-archives
+             '("melpa" . "http://melpa.milkbox.net/packages/") t)
+
+;; cider
+;; clojure-mode
+;; paredit
+;; php-mode
 
 ;; Hook for using tabs instead of spaces, and displaying tabs as 2
 ;; spaces
@@ -13,14 +18,10 @@
   (set-variable 'tab-width 2)
   (set-variable 'indent-tabs-mode t))
 
-(add-to-list 'package-archives
-             '("melpa" . "http://melpa.milkbox.net/packages/") t)
-
 (defun turn-on-paredit () (paredit-mode 1))
 
 (add-hook 'clojure-mode-hook 'turn-on-paredit)
 (add-hook 'php-mode-hook 'use-tabs-hook)
-
 
 (setq c-default-style
       '((groovy-mode . "java")
