@@ -1,5 +1,10 @@
 ;; -*- emacs-lisp -*-
 
+;; I forget what I needed the "marmalade" repo for.
+(require 'package)
+(add-to-list 'package-archives
+             '("melpa" . "https://melpa.org/packages/"))
+
 ;; Use aspell
 (setq-default ispell-program-name "aspell")
 
@@ -53,8 +58,8 @@
 (add-hook 'php-mode-hook 'use-tabs-hook)
 (add-hook 'javascript-mode-hook 'use-tabs-hook)
 (add-hook 'java-mode-hook 'my-indent-setup)
-(add-hook 'java-mode-hook 'whitespace-mode-hook)
-(add-hook 'clojure-mode-hook 'whitespace-mode-hook)
+;;(add-hook 'java-mode-hook 'whitespace-mode-hook)
+;;(add-hook 'clojure-mode-hook 'whitespace-mode-hook)
 
 ;; Mode mappings
 (add-to-list 'auto-mode-alist '("\\.i?t$" . cperl-mode))
@@ -63,19 +68,9 @@
 
 ;;;;;;;;;;;;;;;; ELPA ;;;;;;;;;;;;;;;;
 
-;; I forget what I needed the "marmalade" repo for.
-(require 'package)
-(add-to-list 'package-archives
-    '("marmalade" .
-          "http://marmalade-repo.org/packages/"))
-          (package-initialize)
 
-;; This is from the MacBook.
-(setq package-archives '(("gnu" . "http://elpa.gnu.org/packages/")
-                         ("marmalade" . "http://marmalade-repo.org/packages/")
-                         ("melpa" . "http://melpa.milkbox.net/packages/")))
 
-(require 'uniquify)
-(setq
- uniquify-buffer-name-style 'post-forward
- uniquify-separator ":")
+;;(require 'uniquify)
+;;(setq
+;; uniquify-buffer-name-style 'post-forward
+;; uniquify-separator ":")
