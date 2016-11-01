@@ -1,10 +1,9 @@
 ;; -*- emacs-lisp -*-
 
-;; I forget what I needed the "marmalade" repo for.
 (require 'package)
 (add-to-list 'package-archives
-             '("melpa" . "https://melpa.org/packages/"))
-
+             '("melpa-stable" . "https://stable.melpa.org/packages/")
+                          t)
 ;; Use aspell
 (setq-default ispell-program-name "aspell")
 
@@ -45,7 +44,6 @@
 
 ;;;; Paredit for lisp-based modes ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
-(require 'paredit)
 (defun lisp-enable-paredit-hook ()
   (paredit-mode 1))
 
@@ -58,19 +56,25 @@
 (add-hook 'php-mode-hook 'use-tabs-hook)
 (add-hook 'javascript-mode-hook 'use-tabs-hook)
 (add-hook 'java-mode-hook 'my-indent-setup)
-;;(add-hook 'java-mode-hook 'whitespace-mode-hook)
-;;(add-hook 'clojure-mode-hook 'whitespace-mode-hook)
 
 ;; Mode mappings
 (add-to-list 'auto-mode-alist '("\\.i?t$" . cperl-mode))
 (add-to-list 'auto-mode-alist '("\\.php$" . php-mode))
 (add-to-list 'auto-mode-alist '("\\.edn$" . clojure-mode))
 
-;;;;;;;;;;;;;;;; ELPA ;;;;;;;;;;;;;;;;
+(add-hook 'before-save-hook 'whitespace-cleanup)
 
+(setq org-agenda-files
+      (list "~/Dropbox/org/personal.org"
+            "~/Dropbox/org/byrd.org"
+            "~/Dropbox/org/work.org"
+            "~/Dropbox/org/bridgeport.org"))
 
+(setq org-export-with-planning t)
 
-;;(require 'uniquify)
-;;(setq
-;; uniquify-buffer-name-style 'post-forward
-;; uniquify-separator ":")
+;; The following lines are always needed.  Choose your own keys.
+(global-set-key "\C-cl" 'org-store-link)
+(global-set-key "\C-ca" 'org-agenda)
+(global-set-key "\C-cc" 'org-capture)
+(global-set-key "\C-cb" 'org-iswitchb)
+(ido-mode)
